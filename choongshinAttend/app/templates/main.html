@@ -1,0 +1,11 @@
+{% extends 'base.html' %} 
+{% block content %}
+<ul class="nav nav-pills nav-stacked main-page">
+    <li role="presentation"><a href="{% url 'attend1' %}">베드로반 / 안드레반</a></li>
+    <li role="presentation"><a href="{% url 'attend2' %}">야고보반 / 다대오반</a></li>
+    <li role="presentation"><a href="{% url 'attend3' %}">바돌로매반 / 디모데반</a></li>
+    <li role="presentation"><a href="{% url 'attend4' %}">요한반 / 빌립반</a></li>
+    <li role="presentation"><a href="{% url 'attend5' %}">마태반 / 시몬반</a></li>
+    <li role="presentation"><a href="{% url 'attend6' %}">바울반 / 누가반</a></li>
+</ul>
+{% endblock %}

@@ -1,4 +1,4 @@
-# ⛪ Tripad
+# ⛪ choongshinAttend
 
 ## 👏 URL
 

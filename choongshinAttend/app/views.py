@@ -19,27 +19,27 @@ def one(request):
 
 def two(request):
     child = Child.objects.filter(Q(classname="야고보반") | Q(classname="다대오반"))
-    return render(request, 'attend2.html')
+    return render(request, 'attend2.html', {'child': child})
 
 
 def three(request):
     child = Child.objects.filter(Q(classname="바돌로매반") | Q(classname="디모데반"))
-    return render(request, 'attend3.html')
+    return render(request, 'attend3.html', {'child': child})
 
 
 def four(request):
     child = Child.objects.filter(Q(classname="요한반") | Q(classname="빌립반"))
-    return render(request, 'attend4.html')
+    return render(request, 'attend4.html', {'child': child})
 
 
 def five(request):
     child = Child.objects.filter(Q(classname="마태반") | Q(classname="시몬반"))
-    return render(request, 'attend5.html')
+    return render(request, 'attend5.html', {'child': child})
 
 
 def six(request):
     child = Child.objects.filter(Q(classname="바울반") | Q(classname="누가반"))
-    return render(request, 'attend6.html')
+    return render(request, 'attend6.html', {'child': child})
 
 
 def attend(request):

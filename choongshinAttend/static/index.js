@@ -17,7 +17,7 @@ function clock() {
 }
 setTimeout(function () {
   clock();
-}, 500);
+}, 100);
 // target.innerText = clock();
 
 function preclock() {

@@ -1,1 +1,1 @@
-web: gunicorn choongshinAttend --log--file -
+web: gunicorn choongshinAttend.wsgi --log-file -

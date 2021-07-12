@@ -50,42 +50,96 @@ def one(request):
             attend.child_id = c
             attendList.append(attend)
     return render(request, 'attend1.html', {'attendList': attendList, 'year': year})
-# def one(request):
-#     year = last_sun
-#     child = Child.objects.filter(Q(classname="베드로반") | Q(classname="안드레반"))
-#     attendList = []
-#     for c in child:
-#         try:
-#             attendList.append(Attend.objects.get(
-#                 child_id=c, att_date=year))
-#         except Attend.DoesNotExist:
-#             attendList.append(Attend())
-#     return render(request, 'attend1.html', {'attendList': attendList})
 
 
 def two(request):
+    if request.method == "POST":
+        year = str(request.POST.get("attend_date"))
+    else:
+        year = str(last_sun)
+
     child = Child.objects.filter(Q(classname="야고보반") | Q(classname="다대오반"))
-    return render(request, 'attend2.html', {'child': child})
+    attendList = []
+    for c in child:
+        try:
+            attendList.append(Attend.objects.get(child_id=c, att_date=year))
+        except Attend.DoesNotExist:
+            attend = Attend()
+            attend.child_id = c
+            attendList.append(attend)
+    return render(request, 'attend2.html', {'attendList': attendList, 'year': year})
 
 
 def three(request):
+    if request.method == "POST":
+        year = str(request.POST.get("attend_date"))
+    else:
+        year = str(last_sun)
+
     child = Child.objects.filter(Q(classname="바돌로매반") | Q(classname="디모데반"))
-    return render(request, 'attend3.html', {'child': child})
+    attendList = []
+    for c in child:
+        try:
+            attendList.append(Attend.objects.get(child_id=c, att_date=year))
+        except Attend.DoesNotExist:
+            attend = Attend()
+            attend.child_id = c
+            attendList.append(attend)
+    return render(request, 'attend3.html', {'attendList': attendList, 'year': year})
 
 
 def four(request):
+    if request.method == "POST":
+        year = str(request.POST.get("attend_date"))
+    else:
+        year = str(last_sun)
+
     child = Child.objects.filter(Q(classname="요한반") | Q(classname="빌립반"))
-    return render(request, 'attend4.html', {'child': child})
+    attendList = []
+    for c in child:
+        try:
+            attendList.append(Attend.objects.get(child_id=c, att_date=year))
+        except Attend.DoesNotExist:
+            attend = Attend()
+            attend.child_id = c
+            attendList.append(attend)
+    return render(request, 'attend4.html', {'attendList': attendList, 'year': year})
 
 
 def five(request):
+    if request.method == "POST":
+        year = str(request.POST.get("attend_date"))
+    else:
+        year = str(last_sun)
+
     child = Child.objects.filter(Q(classname="마태반") | Q(classname="시몬반"))
-    return render(request, 'attend5.html', {'child': child})
+    attendList = []
+    for c in child:
+        try:
+            attendList.append(Attend.objects.get(child_id=c, att_date=year))
+        except Attend.DoesNotExist:
+            attend = Attend()
+            attend.child_id = c
+            attendList.append(attend)
+    return render(request, 'attend5.html', {'attendList': attendList, 'year': year})
 
 
 def six(request):
+    if request.method == "POST":
+        year = str(request.POST.get("attend_date"))
+    else:
+        year = str(last_sun)
+
     child = Child.objects.filter(Q(classname="바울반") | Q(classname="누가반"))
-    return render(request, 'attend6.html', {'child': child})
+    attendList = []
+    for c in child:
+        try:
+            attendList.append(Attend.objects.get(child_id=c, att_date=year))
+        except Attend.DoesNotExist:
+            attend = Attend()
+            attend.child_id = c
+            attendList.append(attend)
+    return render(request, 'attend6.html', {'attendList': attendList, 'year': year})
 
 
 def attend(request):

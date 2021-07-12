@@ -1,21 +1,36 @@
 body {
+  position: relative;
+  justify-content: center;
+  align-items: center;
   padding-top: 70px;
+  width: 100%;
+  height: 100%;
+  /* max-width: 700px; */
 }
 .main-page {
-  width: 100%;
-  margin-top: 15%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: 150px 0 0 -150px;
+  min-width: 355px;
+  max-width: 355px;
 }
 ul {
   width: 20%;
+  min-width: 175px;
+  max-width: 175px;
   text-align: center;
   float: left;
   margin-top: 2.5%;
 }
 .panel {
   float: left;
-  width: 50%;
-  margin: 10%;
-  margin-top: 5%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: 100px 0 0 -150px;
+  min-width: 355px;
+  max-width: 355px;
 }
 .btn-default {
   float: right;
@@ -25,3 +40,37 @@ ul {
 .date_select {
   float: right;
 }
+table {
+  border-collapse: collapse;
+  text-align: center;
+  line-height: 1.5;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+table .table_name {
+  width: 20%;
+}
+table .table_worship {
+  width: 15%;
+}
+table .table_zoom {
+  width: 15%;
+}
+table .table_note {
+  width: 30%;
+}
+.table_note input {
+  z-index: 1;
+  border-width: 0.5px;
+  border-radius: 5px;
+}
+table tbody tr td {
+  padding: 5px;
+}
+table thead th {
+  text-align: center;
+  background: #d0b7df;
+}
+/* table .even {
+  background: #a6adb1;
+} */

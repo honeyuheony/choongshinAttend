@@ -15,52 +15,62 @@
   </li>
   <li role="presentation"><a href="{% url 'attend6' %}">바울반 / 누가반</a></li>
 </ul>
-<form class="form-inline" action="{% url 'attend'%}" method="post">
-  {%csrf_token%}
-  <div class="panel panel-default">
-    <!-- Default panel contents -->
-    <div class="panel-heading">
-      마태반 & 시몬반
-      <div class="nav date_select">
-        <button type="button" class="nav-btn go-prev" onclick="preclock()">
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">
+    마태반 / 시몬반
+    <div class="nav date_select">
+      <form class="form-inline" name="date_submit" action="{% url 'attend5' %}" method="post">
+        {%csrf_token%}
+        <input type="hidden" name="attend_date" value="" />
+        <button class="nav-btn go-prev" onclick="preclock()">
           &lt;
         </button>
-        <button
-          type="button"
-          class="nav-btn go-today"
-          id="this-sunday"
-          disabled="disabled"
-        >
-          -
+        <button type="button" class="nav-btn go-today" id="this-sunday" disabled="disabled">
+          {{year}}
         </button>
-        <button type="button" class="nav-btn go-next" onclick="nextclock()">
+        <button class="nav-btn go-next" onclick="nextclock()">
           &gt;
         </button>
-      </div>
+      </form>
     </div>
+  </div>
+  <form class="form-inline" name="data_submit" action="{% url 'attend'%}" method="post">
+    {%csrf_token%}
     <!-- Table -->
     <table class="table">
-      <th>이름</th>
-      <th>예배</th>
-      <th>Zoom</th>
-      <th>Note</th>
-      {% for c in child %}
-      <tr>
-        <td>{{c.name}}</td>
-        <td><input type="checkbox" name="worship[]" , value="{{c.id}}" /></td>
-        <td><input type="checkbox" name="zoom[]" , value="{{c.id}}" /></td>
-        <td><input type="text" name="note[]" /></td>
-      </tr>
-      {% endfor %}
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
+      <thead>
+        <tr>
+          <th class="table_name">이름</th>
+          <th class="table_worship">예배</th>
+          <th class="table_zoom">Zoom</th>
+          <th class="table_note">Note</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for a in attendList %}
+        <tr>
+          <td class="table_name">{{a.child_id}}</td>
+          {% if a.att_worship == True %}
+          <td class="table_worship"><input type="checkbox" name="worship[]" value="{{a.child_id}}" checked="checked" /></td>
+          {% else %}
+          <td class="table_worship"><input type="checkbox" name="worship[]" value="{{a.child_id}}" /></td>
+          {% endif %}
+          {% if a.att_zoom == True %}
+          <td class="table_zoom"><input type="checkbox" name="zoom[]" value="{{a.child_id}}" checked="checked" /></td>
+          {% else %}
+          <td class="table_zoom"><input type="checkbox" name="zoom[]" value="{{a.child_id}}" /></td>
+          {% endif %}
+          <td class="table_note"><input type="text" name="note[]" /></td>
+        </tr>
+        {% endfor %}
+      </tbody>
     </table>
+    <input type="hidden" name="1" value="{{ a.att_worship }}" />
+    <input type="hidden" name="2" value="{{ a.att_zoom }}" />
     <input type="hidden" name="previous" value="{{ request.path }}" />
+    <input type="hidden" name="attend_date" value="" />
     <button type="submit" class="btn btn-default">저장</button>
-  </div>
-</form>
+  </form>
+</div>
 {% endblock %}

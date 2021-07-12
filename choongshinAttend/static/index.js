@@ -1,45 +1,55 @@
 var view_date;
-
+var return_date;
 function clock() {
   var target = document.getElementById("this-sunday");
-  if (target.innerText != "-") {
-    return;
-  }
-  var time = new Date();
-  var sunday = new Date(time.setDate(time.getDate() - time.getDay()));
-  view_date = sunday;
-  var month = sunday.getMonth();
-  var date = sunday.getDate();
-  var day = sunday.getDay();
-  var week = ["일", "월", "화", "수", "목", "금", "토"];
-
-  target.innerText = `${month + 1}월 ${date}일 ${week[day]}요일 `;
+  var time = new Date(target.innerText);
+  var year = time.getFullYear();
+  var month = time.getMonth()+1;
+  var date = time.getDate();
+  month = month >= 10 ? month : '0' + month; 
+  date = date >= 10 ? date : '0' + date; 
+  return_date = `${year}-${month}-${date}`;
+  getDate();
 }
-setTimeout(function () {
-  clock();
-}, 100);
-// target.innerText = clock();
+
+// `${month}월 ${date}일 ${week[day]}요일 `;
 
 function preclock() {
   var target = document.getElementById("this-sunday");
-  var time = view_date;
-  var prevDate = new Date(time.setDate(time.getDate() - time.getDay() - 7));
-
-  var month = prevDate.getMonth();
+  var time = new Date(target.innerText);
+  var prevDate = new Date(time.setDate(time.getDate() - 7));
+  var year = prevDate.getFullYear();
+  var month = prevDate.getMonth()+1;
   var date = prevDate.getDate();
-  var day = prevDate.getDay();
-  var week = ["일", "월", "화", "수", "목", "금", "토"];
-  target.innerText = `${month + 1}월 ${date}일 ${week[day]}요일 `;
+  month = month >= 10 ? month : '0' + month; 
+  date = date >= 10 ? date : '0' + date; 
+  return_date = `${year}-${month}-${date}`;
+  target.innerText = `${year}-${month}-${date}`;
+  getDate();
 }
 
 function nextclock() {
   var target = document.getElementById("this-sunday");
-  var time = view_date;
-  var nextDate = new Date(time.setDate(time.getDate() - time.getDay() + 7));
-
-  var month = nextDate.getMonth();
+  var time = new Date(target.innerText);
+  var nextDate = new Date(time.setDate(time.getDate() + 7));
+  var year = nextDate.getFullYear();
+  var month = nextDate.getMonth()+1;
   var date = nextDate.getDate();
-  var day = nextDate.getDay();
-  var week = ["일", "월", "화", "수", "목", "금", "토"];
-  target.innerText = `${month + 1}월 ${date}일 ${week[day]}요일 `;
+  month = month >= 10 ? month : '0' + month; 
+  date = date >= 10 ? date : '0' + date; 
+  return_date = `${year}-${month}-${date}`;
+  target.innerText = `${year}-${month}-${date}`;
+  getDate();
 }
+
+function getDate() {
+  size = document.getElementsByName("attend_date").length;
+  for (var i = 0; i < size; i++) {
+    document.getElementsByName("attend_date")[i].value = return_date;
+  }
+}
+
+setTimeout(function () {
+  clock();
+}, 100);
+

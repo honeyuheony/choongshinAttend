@@ -9,7 +9,7 @@ class Child(models.Model):
     grade = models.IntegerField(null=False, default='')
 
     def __str__(self):
-        return self.classname + " " + self.name
+        return self.name
 
     class Meta:
         ordering = ['classname']
@@ -25,4 +25,14 @@ class Attend(models.Model):
         help_text="Comment contents", max_length=200, default='', blank=True)
 
     def __str__(self):
-        return str(self.att_date) + " " + "출석"
+        return str(self.child_id) + " " + str(self.att_date) + " " + "출석"
+
+    def to_json(self):
+        return{
+            'child_id': self.child_id,
+            'att_worship': self.att_worship,
+            'att_zoom': self.att_zoom,
+            'att_date': self.att_date,
+            'recode_date': self.recode_date,
+            'att_memo': self.att_memo
+        }

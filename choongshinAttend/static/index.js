@@ -48,6 +48,18 @@ function getDate() {
     document.getElementsByName("attend_date")[i].value = return_date;
   }
 }
+function savealert() {
+  alert("저장완료");
+}
+
+function mobilePushButton() {
+  $('.mnb button').fadeOut();
+  $('.mnb_inner').animate({marginRight: 0}, 1000);
+}
+function mobilePushExit() {
+  $('.mnb button').fadeIn();
+  $('.mnb_inner').animate({marginRight: '-60%'}, 1000);
+}
 
 setTimeout(function () {
   clock();

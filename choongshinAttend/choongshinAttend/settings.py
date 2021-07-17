@@ -26,8 +26,7 @@ SECRET_KEY = 'django-insecure-xu*+ty0zx-m)m!xajgiaba-xkiiyb48zrd!_0zr@%5(k)l0csh
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['kuhy.pythonanywhere.com']
-
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -69,7 +68,6 @@ TEMPLATES = [
         },
     },
 ]
-
 WSGI_APPLICATION = 'choongshinAttend.wsgi.application'
 
 

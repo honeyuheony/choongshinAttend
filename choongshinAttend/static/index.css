@@ -5,20 +5,20 @@ body {
   padding-top: 70px;
   width: 100%;
   height: 100%;
-  /* max-width: 700px; */
+  font-family: "Nanum Gothic", sans-serif;
 }
 .main-page {
   position: absolute;
+  display: block;
+  text-align: center;
   top: 50%;
   left: 50%;
-  margin: 150px 0 0 -150px;
+  margin: 150px 0 0 -170px;
   min-width: 355px;
   max-width: 355px;
 }
-ul {
-  width: 20%;
-  min-width: 175px;
-  max-width: 175px;
+.nav-attend {
+  display: none;
   text-align: center;
   float: left;
   margin-top: 2.5%;
@@ -26,9 +26,9 @@ ul {
 .panel {
   float: left;
   position: absolute;
-  top: 50%;
+  top: 20%;
   left: 50%;
-  margin: 100px 0 0 -150px;
+  margin: 100px 0 0 -170px;
   min-width: 355px;
   max-width: 355px;
 }
@@ -69,8 +69,73 @@ table tbody tr td {
 }
 table thead th {
   text-align: center;
-  background: #d0b7df;
+  background: #e6eef7;
 }
-/* table .even {
-  background: #a6adb1;
-} */
+/* mnd */
+.mnb button {
+  position: fixed;
+  top: 1%;
+  right: 3%;
+  cursor: pointer;
+  border: none;
+  background: #f9f9f9;
+}
+
+.mnb button:hover {
+  opacity: 0.5;
+}
+
+.mnb .mnb_inner {
+  position: fixed;
+  width: 33%;
+  top: 0;
+  right: 0;
+  background: rgba(194, 218, 230, 0.7);
+  height: 100%;
+  margin: 0;
+  text-align: left;
+  padding: 60px 3%;
+  box-sizing: border-box;
+  z-index: 10;
+  margin-right: -40%;
+}
+.mnb .mnb_inner li {
+  margin: 12px 0;
+}
+.mnb .mnb_inner li.exit {
+  color: #312828;
+  margin-top: 60px;
+  cursor: pointer;
+}
+.mnb .mnb_inner li.exit:hover {
+  opacity: 0.5;
+}
+.mnb .mnb_inner li a {
+  color: #312828;
+  display: block;
+  padding: 4px 12px;
+}
+.mnb .mnb_inner li a:hover {
+  background: #fff;
+}
+
+@media (min-width: 1024px) {
+  .nav-attend {
+    display: block;
+    min-width: 17%;
+    max-width: 17%;
+    text-align: center;
+    float: left;
+    margin-top: 2.5%;
+  }
+  .panel {
+    top: 50%;
+    left: 50%;
+  }
+  .mnb {
+    display: none;
+  }
+  .mnb button {
+    display: none;
+  }
+}

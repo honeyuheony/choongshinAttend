@@ -1,0 +1,24 @@
+version: "3"
+services:
+  nginx:
+    container_name: nginx
+    build: ./nginx
+    image: kwh1019/nginx
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - ./choongshinAttend:/srv/kwh1019
+      - ./log:/var/log/nginx
+    depends_on:
+      - django
+
+  django:
+    container_name: django
+    build: ./choongshinAttend
+    image: kwh1019/django
+    restart: always
+    command: uwsgi --ini uwsgi.ini
+    volumes:
+      - ./choongshinAttend:/srv/kwh1019
+      - ./log:/var/log/uwsgi

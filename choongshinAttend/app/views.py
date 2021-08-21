@@ -12,7 +12,7 @@ import json
 
 today = date.today()
 diff = (today.weekday() - 6) % 7
-last_sun = today - timedelta(days=diff)
+last_sun = today - timedelta(days=diff) + timedelta(hours=9)
 
 # Create your views here.
 

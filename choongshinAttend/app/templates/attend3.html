@@ -1,74 +1,87 @@
 {% extends 'base.html' %} {% block content %}
-<ul class="nav nav-pills nav-stacked nav-attend">
-  <li role="presentation">
-    <a href="{% url 'attend1' %}">베드로반 / 안드레반</a>
-  </li>
-  <li role="presentation">
-    <a href="{% url 'attend2' %}">야고보반 / 다대오반</a>
-  </li>
-  <li role="presentation" class="active">
-    <a href="{% url 'attend3' %}">바돌로매반 / 디모데반</a>
-  </li>
-  <li role="presentation"><a href="{% url 'attend4' %}">요한반 / 빌립반</a></li>
-  <li role="presentation"><a href="{% url 'attend5' %}">마태반 / 시몬반</a></li>
-  <li role="presentation"><a href="{% url 'attend6' %}">바울반 / 누가반</a></li>
-</ul>
-<div class="panel panel-default">
-  <!-- Default panel contents -->
-  <div class="panel-heading">
-    바돌로매반 / 디모데반
-    <div class="nav date_select">
-      <form class="form-inline" name="date_submit" action="{% url 'attend3'%}" method="post">
-        {%csrf_token%}
-        <input type="hidden" name="attend_date" value="" />
-        <button class="nav-btn go-prev" onclick="preclock()">
-          &lt;
+{% load static %}
+<div class="container">
+  <div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading">
+      <div class="panel-title">바돌로매반 / 디모데반</div> 
+      <div class="dropdown">
+        <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        반 선택
+        <span class="caret"></span>
         </button>
-        <button type="button" class="nav-btn go-today" id="this-sunday" disabled="disabled">
-          {{year}}
-        </button>
-        <button class="nav-btn go-next" onclick="nextclock()">
-          &gt;
-        </button>
-      </form>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+          <li>
+            <a href="{% url 'attend1' %}">베드로반 / 안드레반</a>
+          </li>
+          <li>
+            <a href="{% url 'attend2' %}">야고보반 / 다대오반</a>
+          </li>
+          <li class="active">
+            <a href="{% url 'attend3' %}">바돌로매반 / 디모데반</a>
+          </li>
+          <li>
+            <a href="{% url 'attend4' %}">요한반 / 빌립반</a>
+          </li>
+          <li><a href="{% url 'attend5' %}">마태반 / 시몬반</a></li>
+          <li><a href="{% url 'attend6' %}">바울반 / 누가반</a></li>
+        </ul>
+      </div>
+      <br><br>
+      <div class="nav date_select">
+        <form class="form-inline" name="date_submit" action="{% url 'attend3'%}" method="post">
+          {%csrf_token%}
+          <input type="hidden" name="attend_date" value="" />
+          <button class="nav-btn go-prev" onclick="preclock()">
+            <img src="{% static '/img/leftBar.png' %}">
+          </button>
+          <button type="button" class="nav-btn go-today" id="this-sunday" disabled="disabled">
+            {{year}}
+          </button>
+          <button class="nav-btn go-next" onclick="nextclock()">
+            <img src="{% static '/img/rightBar.png' %}">
+          </button>
+        </form>
+      </div>
+      <br>
     </div>
+    <form class="form-inline" name="data_submit" action="{% url 'attend'%}" method="post">
+      {%csrf_token%}
+      <!-- Table -->
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="table_name">이름</th>
+            <th class="table_worship">예배</th>
+            <th class="table_zoom">Zoom</th>
+            <th class="table_note">Note</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for a in attendList %}
+          <tr>
+            <td class="table_name">{{a.child_id}}</td>
+            {% if a.att_worship == True %}
+            <td class="table_worship"><input type="checkbox" name="worship[]" value="{{a.child_id}}" checked="checked" /></td>
+            {% else %}
+            <td class="table_worship"><input type="checkbox" name="worship[]" value="{{a.child_id}}" /></td>
+            {% endif %}
+            {% if a.att_zoom == True %}
+            <td class="table_zoom"><input type="checkbox" name="zoom[]" value="{{a.child_id}}" checked="checked" /></td>
+            {% else %}
+            <td class="table_zoom"><input type="checkbox" name="zoom[]" value="{{a.child_id}}" /></td>
+            {% endif %}
+            <td class="table_note"><input type="text" name="note[]" /></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <input type="hidden" name="1" value="{{ a.att_worship }}" />
+      <input type="hidden" name="2" value="{{ a.att_zoom }}" />
+      <input type="hidden" name="previous" value="{{ request.path }}" />
+      <input type="hidden" name="attend_date" value="" />
+      <button type="submit" class="btn btn-default" onclick="savealert()">저장</button>
+    </form>
   </div>
-  <form class="form-inline" name="data_submit" action="{% url 'attend'%}" method="post">
-    {%csrf_token%}
-    <!-- Table -->
-    <table class="table">
-      <thead>
-        <tr>
-          <th class="table_name">이름</th>
-          <th class="table_worship">예배</th>
-          <th class="table_zoom">Zoom</th>
-          <th class="table_note">Note</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for a in attendList %}
-        <tr>
-          <td class="table_name">{{a.child_id}}</td>
-          {% if a.att_worship == True %}
-          <td class="table_worship"><input type="checkbox" name="worship[]" value="{{a.child_id}}" checked="checked" /></td>
-          {% else %}
-          <td class="table_worship"><input type="checkbox" name="worship[]" value="{{a.child_id}}" /></td>
-          {% endif %}
-          {% if a.att_zoom == True %}
-          <td class="table_zoom"><input type="checkbox" name="zoom[]" value="{{a.child_id}}" checked="checked" /></td>
-          {% else %}
-          <td class="table_zoom"><input type="checkbox" name="zoom[]" value="{{a.child_id}}" /></td>
-          {% endif %}
-          <td class="table_note"><input type="text" name="note[]" /></td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-    <input type="hidden" name="1" value="{{ a.att_worship }}" />
-    <input type="hidden" name="2" value="{{ a.att_zoom }}" />
-    <input type="hidden" name="previous" value="{{ request.path }}" />
-    <input type="hidden" name="attend_date" value="" />
-    <button class="btn btn-default" onclick="savealert()">저장</button>
-  </form>
 </div>
 {% endblock %}

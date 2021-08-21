@@ -1,0 +1,1 @@
+ssh -i choongshin.pem choongshin@ec2-52-79-253-49.ap-northeast-2.compute.amazonaws.com

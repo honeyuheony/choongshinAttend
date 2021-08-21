@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge; chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src = "{% static './jquery-3.6.0.min.js' %}" ></script>
+    <script src = "{% static '/jquery-3.6.0.min.js' %}" ></script>
     <!-- 합쳐지고 최소화된 최신 CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <!-- 부가적인 테마 -->
@@ -18,19 +18,21 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poor+Story&display=swap" rel="stylesheet">
+
     <title>충신교회 초등부</title>
     
 </head>
 
-<body >
+<body>
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="{% url 'main' %}">충신교회 초등부</a>
-            <div class="mnb">
-                <button class="push" onclick="mobilePushButton()"><img src="{% static './img/mnb.png' %}" alt="더보기 메뉴"></button>
+            <a class="navbar-brand" href="{% url 'main' %}">충신교회 교육부</a>
+            <!-- <div class="mnb">
+                <button class="push" onclick="mobilePushButton()"><img src="{% static '/img/mnb.png' %}" alt="더보기 메뉴"></button>
                 <ul class="mnb_inner">
                     <ul class="nav nav-pills nav-stacked">
-                        <li class="exit" onclick="mobilePushExit()"><img src="{% static './img/mnb.png' %}"></li>
+                        <li class="exit" onclick="mobilePushExit()"><img src="{% static '/img/mnb.png' %}"></li>
                         <li role="presentation"><a href="{% url 'attend1' %}" >베드로반<br>안드레반</a></li>
                         <li role="presentation"><a href="{% url 'attend2' %}">야고보반<br>다대오반</a></li>
                         <li role="presentation"><a href="{% url 'attend3' %}">바돌로매반<br>디모데반</a></li>
@@ -39,11 +41,12 @@
                         <li role="presentation"><a href="{% url 'attend6' %}">바울반<br>누가반</a></li>
                     </ul>
                 </ul>
-            </div>
+            </div> -->
         </div>
-        
     </nav>
+    <article class="article">
     {% block content %}
 
-    {% endblock %}
+    {% endblock %}  
+    </article>
 </body>
